@@ -1,0 +1,38 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import FormattedDate from "../../components/FormattedDate.astro";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
+);
+---
+
+<Layout>
+  <main class="pb-16 flex-1">
+    <h1
+      class="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+      Posts
+    </h1>
+    <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+      Ideas, thoughts, and hopes I wish to share with you
+    </p>
+    <section>
+      <div class="flex flex-col space-y-4 mt-8">
+        {
+          posts.map((post) => (
+            <article>
+              <a href={`/posts/${post.slug}/`}>
+                <h2 class="text-xl font-medium tracking-tight text-zinc-800 dark:text-zinc-100">
+                  {post.data.title}
+                </h2>
+
+                <FormattedDate date={post.data.pubDate} />
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</Layout>
