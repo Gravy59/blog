@@ -1,5 +1,7 @@
 /** @type {import("prettier").Options} */
 module.exports = {
+  // fixes whitespace issues
+  printWidth: 100,
   bracketSameLine: true,
   plugins: [
     require.resolve("prettier-plugin-astro"),
