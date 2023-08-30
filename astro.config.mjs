@@ -8,7 +8,4 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   site: "https://gravy59.vercel.app/",
   integrations: [mdx(), sitemap(), tailwind()],
-  experimental: {
-    viewTransitions: true,
-  },
 });

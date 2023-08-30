@@ -1,3 +1,3 @@
 # Gravy's Blog
 
-*My humble corner of the internet*
+_My humble corner of the internet_
