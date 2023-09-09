@@ -1,0 +1,26 @@
+[
+  {
+    "name": "The-Site",
+    "description": "A fullstack web app built with SvelteKit, TypeScript, Tailwind, Prisma, and Lucia. Designed for easy dissemination of illegal government programs.",
+    "link": "https://github.com/gravy59/the-site",
+    "wip": true
+  },
+  {
+    "name": "scp-db",
+    "description": "A curation of the best SCPs from the foundation. Built with Next.js and Contentlayer, with a 100% Chrome Lighthouse score",
+    "link": "https://scp-db-zeta.vercel.app/",
+    "wip": false
+  },
+  {
+    "name": "WOPR Console",
+    "description": "A C# spoof of the WOPR from the 1983 cult classic film WarGames.",
+    "link": "https://github.com/gravy59/wopr-console/",
+    "wip": false
+  },
+  {
+    "name": "pi-nuker.py",
+    "description": "Simple Nuking and Trolling for Minecraft: Pi Edition ",
+    "link": "https://github.com/Gravy59/pi-nuker.py/",
+    "wip": true
+  }
+]

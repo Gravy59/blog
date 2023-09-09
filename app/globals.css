@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: theme(colors.zinc.200) transparent;
+  }
+
   html {
     text-rendering: optimizeLegibility;
   }
