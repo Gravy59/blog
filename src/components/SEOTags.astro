@@ -1,0 +1,58 @@
+---
+import { SEO } from "astro-seo";
+import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
+
+type Props = {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  og?: {
+    title: string;
+    type: string;
+    description: string;
+    image: string;
+    alt: string;
+  };
+};
+
+const { title, description, noindex, og } = Astro.props;
+
+const openGraph = {
+  title: og?.title || SITE_TITLE,
+  type: og?.type || "website",
+  image: og?.image || "/opengraph-image.jpg",
+  alt: og?.alt || "astro portfolio template image",
+  url: Astro.site,
+  description: og?.description || SITE_DESCRIPTION,
+};
+---
+
+<SEO
+  title={title ?? SITE_TITLE}
+  description={description ?? SITE_DESCRIPTION}
+  noindex={noindex ?? false}
+  canonical={new URL(Astro.url.pathname, Astro.site)}
+  openGraph={{
+    basic: {
+      title: openGraph.title,
+      type: openGraph.type,
+      image: openGraph.image,
+    },
+  }}
+  twitter={{
+    creator: "@gravy59_",
+  }}
+  extend={{
+    // extending the default meta tags
+    meta: [
+      {
+        name: "twitter:image",
+        content: og?.image ?? "https://github.com/gravy59.png",
+      },
+      { name: "twitter:title", content: title ?? SITE_TITLE },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:description", content: description ?? SITE_DESCRIPTION },
+      { name: "twitter:site", content: "@gravy59_" },
+    ],
+  }}
+/>

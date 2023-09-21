@@ -1,0 +1,40 @@
+import typography from "@tailwindcss/typography";
+import defaultTheme from "tailwindcss/defaultTheme";
+
+/** @type {import("tailwindcss").Config} */
+const config = {
+  darkMode: "class",
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: "1.5rem",
+        sm: "2.5rem",
+      },
+      screens: {
+        sm: "768px",
+      },
+    },
+    extend: {
+      fontFamily: {
+        sans: ["Inter Variable", "Inter", ...defaultTheme.fontFamily.sans],
+      },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            img: {
+              borderRadius: theme("borderRadius[2xl]"),
+            },
+            pre: {
+              borderRadius: theme("borderRadius[2xl]"),
+            },
+          },
+        },
+      }),
+    },
+  },
+  plugins: [typography],
+};
+
+export default config;

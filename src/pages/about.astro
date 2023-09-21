@@ -1,0 +1,23 @@
+---
+import SingleLayout from "@/layouts/SingleLayout.astro";
+import aboutImage from "@/assets/about.webp";
+---
+
+<SingleLayout
+  title="About Me"
+  pubDate={new Date("Aug 01 2023")}
+  image={{
+    src: aboutImage,
+    alt: {
+      reader: "A cyborg bird flying",
+      caption: "Generated with Stable Diffusion and Real-ESRGAN",
+    },
+  }}>
+  <p class="lead">Hey there. 👋🏻</p>
+  <p>
+    I&rsquo;m Gravy, a web developer and enthusiastic student with a love for solving the puzzles of
+    the digital world. But that&rsquo;s not all that defines me — I&rsquo;m also a passionate
+    creative writer, hiker, and pianist. My goal in life is to <em>explore the labyrinth</em> — to
+    discover the mysteries and wonders God has to offer while welcoming the unknown.
+  </p>
+</SingleLayout>
