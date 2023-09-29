@@ -3,7 +3,7 @@ import quotes from "@/quotes.json";
 const qotd = quotes[new Date().getDay()];
 ---
 
-<div class="prose">
+<div class="prose dark:prose-invert">
   <blockquote>
     <p>{qotd.body}</p>
     <footer>

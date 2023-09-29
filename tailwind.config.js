@@ -19,6 +19,7 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["Inter Variable", "Inter", ...defaultTheme.fontFamily.sans],
+        mono: ["JetBrains Mono Variable", "JetBrains Mono", ...defaultTheme.fontFamily.mono],
       },
       typography: ({ theme }) => ({
         DEFAULT: {
