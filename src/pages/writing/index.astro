@@ -1,0 +1,44 @@
+---
+import SingleLayoutWithoutMetadata from "@/layouts/SingleLayoutWithoutMetadata.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("writing");
+
+const sortedPosts = posts.sort(
+  (a, b) =>
+    Math.floor(new Date(b.data.pubDatetime).getTime() / 1000) -
+    Math.floor(new Date(a.data.pubDatetime).getTime() / 1000),
+);
+---
+
+<SingleLayoutWithoutMetadata>
+  <ol role="list" class="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2">
+    {
+      sortedPosts.map((post) => (
+        <li class="group relative flex flex-col items-start rounded-lg px-4 py-6 shadow-sm ring-1 ring-zinc-900/5 transition hover:bg-zinc-50 hover:shadow-none dark:ring-white/10 dark:hover:bg-zinc-800/50">
+          <h2 class="flex w-full justify-between text-base font-semibold text-zinc-800 dark:text-zinc-100">
+            <a href={`/writing/${post.slug}`}>
+              <span class="absolute inset-0 z-20" />
+              {post.data.title}
+            </a>
+          </h2>
+          <time
+            class="flex items-center text-sm font-medium text-zinc-400 dark:text-zinc-500"
+            datetime={post.data.pubDatetime}>
+            {new Date(post.data.pubDatetime).toLocaleDateString("en-us", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </time>
+          <p class="mt-2 text-sm">
+            When Lieutenant Arik McLaren and his platoon are framed for treason, they flee to the
+            uncharted Outskirts to clear their names. But the revelations they uncover about Praetor
+            Althor’s secret plans force them into a war of worlds, with conspiracies leading to the
+            Emperor himself.
+          </p>
+        </li>
+      ))
+    }
+  </ol>
+</SingleLayoutWithoutMetadata>

@@ -1,0 +1,27 @@
+---
+import { getCollection, getEntry, type CollectionEntry } from "astro:content";
+import SingleLayout from "@/layouts/SingleLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("writing");
+
+  const postResult = posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+
+  return postResult;
+}
+
+export interface Props {
+  post: CollectionEntry<"writing">;
+}
+
+const { post } = Astro.props;
+
+const { Content } = await post.render();
+---
+
+<SingleLayout title={post.data.title} pubDate={new Date(post.data.pubDatetime)}>
+  <Content />
+</SingleLayout>
