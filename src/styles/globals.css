@@ -11,4 +11,18 @@
   html {
     text-rendering: optimizeLegibility;
   }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+  }
+
+  @keyframes slideOut {
+    to {
+      opacity: 0;
+      transform: translateY(-1.5rem);
+    }
+  }
 }

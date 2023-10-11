@@ -1,9 +1,10 @@
 ---
+import { slideUp } from "@/animations";
 import quotes from "@/quotes.json";
 const qotd = quotes[new Date().getDay()];
 ---
 
-<div class="prose dark:prose-invert">
+<div class="prose dark:prose-invert" transition:animate={slideUp}>
   <blockquote>
     <p>{qotd.body}</p>
     <footer>

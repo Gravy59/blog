@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import "@fontsource-variable/inter";
 import "@/styles/globals.css";
 import BaseHead from "@/components/BaseHead.astro";
@@ -23,6 +24,7 @@ const { title, description } = Astro.props;
     <BaseHead title={title} description={description} />
     <SEOTags />
     <script is:inline src="/toggle-theme.js"></script>
+    <ViewTransitions />
   </head>
   <body
     class="flex min-h-full flex-col bg-white font-sans text-zinc-900 dark:bg-zinc-900 dark:text-zinc-50">
@@ -75,13 +77,13 @@ const { title, description } = Astro.props;
         <a
           class="transition hover:text-orange-500 dark:hover:text-orange-400"
           href="https://github.com/gravy59">
-          <GithubLogo aria-hidden class="h-4 w-4" />
+          <GithubLogo aria-hidden class="h-4 w-4 [&>path]:stroke-current" />
           <span class="sr-only">Gravy59 on GitHub</span>
         </a>
         <a
           class="transition hover:text-orange-500 dark:hover:text-orange-400"
           href="mailto:gravy59@proton.me">
-          <Envelope aria-hidden class="h-4 w-4" />
+          <Envelope aria-hidden class="h-4 w-4 [&>:not(rect)]:stroke-current" />
           <span class="sr-only">Email Gravy59</span>
         </a>
         <a

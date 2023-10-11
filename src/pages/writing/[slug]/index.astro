@@ -22,6 +22,6 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<SingleLayout title={post.data.title} pubDate={new Date(post.data.pubDatetime)}>
+<SingleLayout indent title={post.data.title} pubDate={new Date(post.data.pubDatetime)}>
   <Content />
 </SingleLayout>

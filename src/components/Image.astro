@@ -1,6 +1,7 @@
 ---
 import { Image as AstroImage } from "astro:assets";
 import type { AltMulti } from "@/types";
+import { slideUp } from "@/animations";
 interface Props {
   src: string | ImageMetadata;
   alt?: AltMulti;
@@ -11,7 +12,7 @@ const { src, alt } = Astro.props;
 const reader = typeof alt === "object" ? alt.reader : alt;
 ---
 
-<figure class="mb-6">
+<figure class="mb-6" transition:animate={slideUp}>
   <AstroImage
     src={src}
     alt={reader ?? null}

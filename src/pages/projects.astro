@@ -1,14 +1,22 @@
 ---
+import { slideUp } from "@/animations";
 import SingleLayoutWithoutMetadata from "@/layouts/SingleLayoutWithoutMetadata.astro";
 import projects from "@/projects.json";
 ---
 
 <SingleLayoutWithoutMetadata>
-  <h1 class="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+  <h1
+    transition:animate={slideUp}
+    class="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
     Projects
   </h1>
-  <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">Creations I&rsquo;m proud of</p>
-  <ul role="list" class="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2">
+  <p transition:animate={slideUp} class="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+    Creations I&rsquo;m proud of
+  </p>
+  <ul
+    transition:animate={slideUp}
+    role="list"
+    class="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2">
     {
       projects.map((project) => (
         <li class="group relative flex flex-col items-start rounded-lg px-4 py-6 shadow-sm ring-1 ring-zinc-900/5 transition hover:bg-zinc-50 hover:shadow-none dark:ring-white/10 dark:hover:bg-zinc-800/50">
