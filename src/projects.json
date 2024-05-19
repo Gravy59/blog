@@ -1,0 +1,17 @@
+[
+	{
+		"name": "pi-nuker.py",
+		"description": "A script for Minecraft: Pi Edition designed to troll players and disrupt their play",
+		"link": "https://github.com/Gravy59/pi-nuker.py/"
+	},
+	{
+		"name": "scp-db",
+		"description": "A curation of the best SCPs from the foundation. Built with Next.js and Contentlayer, with a 100% Chrome Lighthouse score",
+		"link": "https://scp-db-zeta.vercel.app/"
+	},
+	{
+		"name": "OpenRocket Plots",
+		"description": "Plotting simulations in OpenRocket with Python. Includes Vertical Motion vs. Time and Flight Side Profile",
+		"link": "https://gist.github.com/Gravy59/65b339075c067f33a3183c6e56059487"
+	}
+]

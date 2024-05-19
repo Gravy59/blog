@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilites;
+
+@layer base {
+	:root {
+		background-color: var(--slate-1);
+		color: var(--slate-12);
+		font-size: var(--text-base);
+		font-family: Inter, sans-serif;
+		font-feature-settings:
+			"liga" 1,
+			"calt" 1,
+			"ss02" 1;
+	}
+	@supports (font-variation-settings: normal) {
+		:root {
+			font-family: InterVariable, sans-serif;
+		}
+	}
+	html {
+		@apply h-full antialiased scroll-smooth;
+		text-rendering: optimizeLegibility;
+	}
+	body {
+		@apply min-h-full;
+	}
+}
