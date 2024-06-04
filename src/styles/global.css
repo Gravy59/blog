@@ -19,7 +19,7 @@
 		}
 	}
 	html {
-		@apply h-full antialiased scroll-smooth;
+		@apply h-full scroll-smooth antialiased;
 		text-rendering: optimizeLegibility;
 	}
 	body {
