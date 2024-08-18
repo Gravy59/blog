@@ -1,78 +1,75 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import projects from "../projects.json";
 ---
 
-<html>
-	<head>
-		<link rel="preconnect" href="https://rsms.me/" />
-		<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-	</head>
-	<body class="px-8 sm:px-16 xl:px-48 pb-16 pt-8">
-		<header class="h-16 items-center flex mb-8">
-			<img class="w-14" src="gravy.png" alt="Gravy59" />
-		</header>
-		<main class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
-			<h1
-				class="col-span-2 text-6xl font-extrabold text-balance lg:mb-12 leading-auto"
+<BaseLayout title="Home">
+	<main class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+		<h1
+			class="col-span-2 text-6xl font-extrabold text-balance lg:mb-12 leading-auto"
+		>
+			Hey<br />there.&nbsp;&#x1F44B;&#x1F3FB;
+		</h1>
+		<div class="col-span-2 sm:col-span-4">
+			<p
+				class="text-4xl text-pretty font-medium lg:text-right leading-auto"
 			>
-				Hey<br />there.&nbsp;&#x1F44B;&#x1F3FB;
-			</h1>
-			<div class="col-span-2 sm:col-span-4">
-				<p class="text-4xl text-pretty font-medium lg:text-right leading-auto">
-					I&rsquo;m a student programmer who loves music, sci-fi, and learning
-					random things.
-				</p>
-			</div>
-			<p class="text-pretty col-span-full lg:col-span-3">
-				I am currently studying computer science at Pikes Peak Early College. I
-				have a passion for programming, especially in TypeScript, Rust, and
-				Python. In my free time, I enjoy playing the piano, reading science
-				fiction novels, and writing about fantasy worlds.
+				I&rsquo;m a student programmer who loves music,
+				sci-fi, and learning random things.
 			</p>
-			<p class="text-pretty col-span-full lg:col-span-3">
-				I want to use my programming skills to build meaningful projects.
-				I&rsquo;m particularly interested in both IT infrastructure and advanced
-				software. If I wasn&rsquo;t constrained by resources, I would build
-				open-source applications that bring competition to the market.
+		</div>
+		<p class="text-pretty col-span-full lg:col-span-3">
+			I am currently studying computer science at Pikes Peak
+			Early College. I have a passion for programming,
+			especially in TypeScript, Rust, and Python. In my free
+			time, I enjoy playing the piano, reading science fiction
+			novels, and writing about fantasy worlds.
+		</p>
+		<p class="text-pretty col-span-full lg:col-span-3">
+			I want to use my programming skills to build meaningful
+			projects. I&rsquo;m particularly interested in both IT
+			infrastructure and advanced software. If I wasn&rsquo;t
+			constrained by resources, I would build open-source
+			applications that bring competition to the market.
+		</p>
+		<section class="col-span-full">
+			<h1 class="font-semibold text-2xl">Projects</h1>
+			<ul
+				role="list"
+				class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-8"
+			>
+				{
+					projects.map((project) => (
+						<li class="flex flex-col gap-y-1 items-start py-4">
+							<div class="font-medium text-lg w-full leading-auto flex justify-between">
+								<a
+									href={
+										project.link
+									}
+									class="hover:underline"
+								>
+									{
+										project.name
+									}
+								</a>
+							</div>
+							<p class="text-sm text-pretty leading-auto">
+								{
+									project.description
+								}
+							</p>
+						</li>
+					))
+				}
+			</ul>
+		</section>
+		<section class="col-span-full">
+			<p
+				class="text-4xl text-pretty font-medium leading-auto"
+			>
+				I have lots in store for the future&mdash;stay
+				tuned.
 			</p>
-			<section class="col-span-full">
-				<h1 class="font-semibold text-2xl">Projects</h1>
-				<ul role="list" class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-8">
-					{
-						projects.map((project) => (
-							<li class="flex flex-col gap-y-1 items-start py-4">
-								<div class="font-medium text-lg w-full leading-auto flex justify-between">
-									<a href={project.link} class="hover:underline">
-										{project.name}
-									</a>
-								</div>
-								<p class="text-sm text-pretty leading-auto">
-									{project.description}
-								</p>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-			<section class="col-span-full">
-				<p class="text-4xl text-pretty font-medium leading-auto">
-					I have lots in store for the future&mdash;stay tuned.
-				</p>
-			</section>
-		</main>
-		{
-			process.env.NODE_ENV !== "production" && (
-				<div class="fixed bottom-1 left-1 z-50 flex h-6 w-6 items-center justify-center rounded-full bg-gray-800 p-3 font-mono text-xs text-white">
-					<div class="block sm:hidden">xs</div>
-					<div class="hidden sm:block md:hidden">sm</div>
-					<div class="hidden md:block lg:hidden">md</div>
-					<div class="hidden lg:block xl:hidden">lg</div>
-					<div class="hidden xl:block 2xl:hidden">xl</div>
-					<div class="hidden 2xl:block">2xl</div>
-				</div>
-			)
-		}
-	</body>
-</html>
+		</section>
+	</main>
+</BaseLayout>
