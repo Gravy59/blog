@@ -23,7 +23,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<BaseLayout title="Home">
+<BaseLayout title={entry.data.name} description={entry.data.description}>
 	<main class="flex-auto max-w-prose mx-auto">
 		<article>
 			<header class="flex flex-col max-w-prose">
