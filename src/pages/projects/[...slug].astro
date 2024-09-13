@@ -1,0 +1,58 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { z } from "astro:content";
+
+interface Props {
+	entry: CollectionEntry<"projects">;
+}
+
+// This is a dynamic route that generates a page for every Markdown file in src/content/
+// Read more about dynamic routes and this `getStaticPaths` function in the Astro docs:
+// https://docs.astro.build/en/core-concepts/routing/#dynamic-routes
+export async function getStaticPaths() {
+	const work = await getCollection("projects");
+	return work.map((entry) => ({
+		params: { slug: entry.slug },
+		props: { entry },
+	}));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout title="Home">
+	<main class="flex-auto max-w-prose mx-auto">
+		<article>
+			<header class="flex flex-col max-w-prose">
+				<h1
+					class="mt-6 text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100"
+				>
+					{entry.data.name}
+				</h1>
+				{
+					entry.data.publishDate && (
+						<time
+							class="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500"
+							datetime={entry.data.publishDate.toISOString().split("T")[0]}
+						>
+							<span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
+							<span class="ml-3">
+								{Intl.DateTimeFormat("en-GB", {
+									day: "numeric",
+									month: "long",
+									year: "numeric",
+								}).format(entry.data.publishDate)}
+							</span>
+						</time>
+					)
+				}
+			</header>
+			<div class="mt-8 prose dark:prose-invert">
+				<Content />
+			</div>
+		</article>
+	</main>
+</BaseLayout>

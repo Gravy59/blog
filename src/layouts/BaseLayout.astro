@@ -9,17 +9,16 @@ interface Props {
 	description?: string;
 }
 
-const { title, description = "Student dev who enjoys free software" } =
-	Astro.props;
+const {
+	title = "Gravy59",
+	description = "Student dev who enjoys free software",
+} = Astro.props;
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1"
-		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/png" href="/icon.png" />
 		<SEO
 			title={title}
@@ -49,27 +48,44 @@ const { title, description = "Student dev who enjoys free software" } =
 		<link rel="preconnect" href="https://rsms.me/" />
 		<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
 	</head>
-	<body class="px-8 sm:px-16 xl:px-48 pb-16 pt-8">
+	<body class="px-8 sm:px-16 xl:px-48 pt-8 flex flex-col">
 		<header class="h-16 items-center flex mb-8">
-			<Image src={logo} alt="Gravy59" class="w-14" />
+			<a href="/" aria-label="Home">
+				<Image src={logo} alt="Gravy59" class="w-14" aria-hidden />
+			</a>
 		</header>
 		<slot />
+		<footer
+			class="mt-24 flex-none border-t border-zinc-100 pb-16 pt-10 dark:border-zinc-700/40 flex flex-col items-center justify-between gap-6 sm:flex-row"
+		>
+			<dl
+				class="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-zinc-800 dark:text-zinc-200"
+			>
+				<dt>Current mood:</dt>
+				<dd>Vibing</dd>
+			</dl>
+			<p class="text-sm text-zinc-400 dark:text-zinc-500">
+				This work is licensed under <a
+					class="underline"
+					href="https://creativecommons.org/licenses/by/4.0/"
+					target="_blank"
+					rel="noopener noreferrer">CC BY 4.0</a
+				> with inspiration from <a
+					href="https://rsms.me"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="underline">Rasmus Andersson</a
+				>
+			</p>
+		</footer>
 		{
 			process.env.NODE_ENV !== "production" && (
 				<div class="fixed bottom-1 left-1 z-50 flex h-6 w-6 items-center justify-center rounded-full bg-gray-800 p-3 font-mono text-xs text-white">
 					<div class="block sm:hidden">xs</div>
-					<div class="hidden sm:block md:hidden">
-						sm
-					</div>
-					<div class="hidden md:block lg:hidden">
-						md
-					</div>
-					<div class="hidden lg:block xl:hidden">
-						lg
-					</div>
-					<div class="hidden xl:block 2xl:hidden">
-						xl
-					</div>
+					<div class="hidden sm:block md:hidden">sm</div>
+					<div class="hidden md:block lg:hidden">md</div>
+					<div class="hidden lg:block xl:hidden">lg</div>
+					<div class="hidden xl:block 2xl:hidden">xl</div>
 					<div class="hidden 2xl:block">2xl</div>
 				</div>
 			)
