@@ -2,6 +2,8 @@
 name: scp-db
 description: A curation of the best SCPs from the foundation. Built with Next.js and Contentlayer, with a 100% Chrome Lighthouse score
 publishDate: 2024-02-01
+cover: ./screenshot-1.avif
+coverAlt: A document from the SCP Foundation detailing SCP-055, known as 'Antimeme'. It includes the SCP logo at the top with the text 'Secure, Contain, Protect'. The document specifies the item number SCP-055, classifies it as Keter, and provides special containment procedures and a description of the object.
 link: https://scp-db-zeta.vercel.app/
 ---
 
