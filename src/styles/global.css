@@ -1,28 +1,86 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilites;
+@import "tailwindcss";
+
+@plugin '@tailwindcss/typography';
+
+@theme {
+	--font-sans: Geist, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+	--leading-auto: calc(4px + 2ex);
+
+	--color-accent-100: oklch(99.4% 0.0035 256.3);
+	--color-accent-200: oklch(98.1% 0.0077 256.3);
+	--color-accent-300: oklch(96.1% 0.0183 256.3);
+	--color-accent-400: oklch(93.5% 0.029 256.3);
+	--color-accent-500: oklch(90.3% 0.0392 256.3);
+	--color-accent-600: oklch(86.2% 0.0502 256.3);
+	--color-accent-700: oklch(80.6% 0.0626 256.3);
+	--color-accent-800: oklch(72.9% 0.0842 256.3);
+	--color-accent-900: oklch(51.7% 0.106 256.3);
+	--color-accent-1000: oklch(46.9% 0.106 256.3);
+	--color-accent-1100: oklch(52.1% 0.106 256.3);
+	--color-accent-1200: oklch(34% 0.0559 256.3);
+	--color-accent-surface: color(display-p3 0.9569 0.9725 0.9961 / 0.8);
+
+	--color-gray-100: oklch(99.1% 0.0025 255.5);
+	--color-gray-200: oklch(98.2% 0.005 255.5);
+	--color-gray-300: oklch(95.6% 0.0075 255.5);
+	--color-gray-400: oklch(93.1% 0.0101 255.5);
+	--color-gray-500: oklch(91% 0.0127 255.5);
+	--color-gray-600: oklch(88.8% 0.0154 255.5);
+	--color-gray-700: oklch(85.3% 0.0195 255.5);
+	--color-gray-800: oklch(79.4% 0.0266 255.5);
+	--color-gray-900: oklch(64.6% 0.0273 255.5);
+	--color-gray-1000: oklch(61% 0.0267 255.5);
+	--color-gray-1100: oklch(50.3% 0.0231 255.5);
+	--color-gray-1200: oklch(24.1% 0.0165 255.5);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-600, currentColor);
+	}
+}
 
 @layer base {
+	*,
+	::before,
+	::after {
+		border-color: var(--color-gray-600);
+	}
 	:root {
-		background-color: var(--slate-1);
-		color: var(--slate-12);
-		font-size: var(--text-base);
-		font-family: Inter, sans-serif;
+		@apply text-gray-1200 dark:bg-gray-1200 bg-white dark:text-gray-100;
 		font-feature-settings:
 			"liga" 1,
 			"calt" 1,
-			"ss02" 1;
-	}
-	@supports (font-variation-settings: normal) {
-		:root {
-			font-family: InterVariable, sans-serif;
-		}
+			"ss05" 1,
+			"ss09" 1;
 	}
 	html {
 		@apply h-full scroll-smooth antialiased;
 		text-rendering: optimizeLegibility;
 	}
 	body {
-		@apply min-h-full;
+		@apply flex min-h-full flex-col;
+	}
+}
+
+@layer base {
+	@font-face {
+		font-family: Geist;
+		src: url(/assets/Geist[wght].woff2) format("woff2");
+		font-display: swap;
 	}
 }

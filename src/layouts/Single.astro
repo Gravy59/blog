@@ -1,0 +1,58 @@
+---
+import { Picture } from "astro:assets";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+	title: string;
+	date: Date;
+	description: string;
+	cover?: ImageMetadata;
+	coverAlt?: string;
+}
+
+const { title, date, description, cover, coverAlt } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} pubDatetime={date}>
+	<main class="mt-28">
+		<article class="max-w-2xl">
+			<header class="flex flex-col">
+				<h1
+					class="mt-6 text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100"
+				>
+					{title}
+				</h1>
+				{
+					date && (
+						<time
+							class="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500"
+							datetime={date.toISOString().slice(0, 10)}
+						>
+							<span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
+							<span class="ml-3">
+								{Intl.DateTimeFormat("en-GB", {
+									day: "numeric",
+									month: "long",
+									year: "numeric",
+								}).format(date)}
+							</span>
+						</time>
+					)
+				}
+			</header>
+			<div class="mt-8 prose dark:prose-invert prose-gray">
+				{
+					cover && (
+						<Picture
+							formats={["webp", "avif"]}
+							src={cover}
+							alt={coverAlt ?? null}
+							class="rounded-3xl bg-accent-100"
+						/>
+					)
+				}
+				<slot />
+			</div>
+		</article>
+	</main>
+</BaseLayout>

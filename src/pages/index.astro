@@ -1,61 +1,103 @@
 ---
 import { getCollection } from "astro:content";
+import { Image, Picture } from "astro:assets";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const projects = (await getCollection("projects")).sort(
-	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
+
+import typescript from "../assets/logos/ts.svg";
+import cpp from "../assets/logos/cpp.svg";
+import csharp from "../assets/logos/csharp.svg";
+import python from "../assets/logos/python.svg";
+import go from "../assets/logos/go.svg";
+import coloradoSprings from "../assets/coloradoSprings.webp";
+
+const langs = [
+	{ img: typescript, name: "TypeScript" },
+	{ img: cpp, name: "C++" },
+	{ img: csharp, name: "C#" },
+	{ img: python, name: "Python" },
+	{ img: go, name: "Go" },
+];
 ---
 
 <BaseLayout title="Home">
-	<main class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
-		<h1
-			class="col-span-2 text-6xl font-extrabold text-balance lg:mb-12 leading-auto"
-		>
-			Hey<br />there.&nbsp;&#x1F44B;&#x1F3FB;
-		</h1>
-		<div class="col-span-2 sm:col-span-4">
-			<p class="text-4xl text-pretty font-medium lg:text-right leading-auto">
+	<main class="mt-28">
+		<div class="max-w-2xl">
+			<h1 class="text-4xl font-bold tracking-tight text-gray-1200 sm:text-5xl">
+				Hey there.&nbsp;&#x1F44B;&#x1F3FB;
+			</h1>
+			<p class="mt-6 text-gray-1100 text-pretty">
 				I&rsquo;m a student programmer who loves music, sci-fi, and learning
-				random things.
+				random things. I am currently studying computer science at Pikes Peak
+				State College and have a passion for programming.
 			</p>
 		</div>
-		<p class="text-pretty col-span-full lg:col-span-3">
-			I am currently studying computer science at Pikes Peak State College. I
-			have a passion for programming, especially in TypeScript, Rust, and
-			Python. In my free time, I enjoy playing the piano, reading science
-			fiction novels, and writing about fantasy worlds.
-		</p>
-		<p class="text-pretty col-span-full lg:col-span-3">
-			I want to use my programming skills to build meaningful projects.
-			I&rsquo;m particularly interested in both IT infrastructure and advanced
-			software. If I wasn&rsquo;t constrained by resources, I would build
-			open-source applications that bring competition to the market.
-		</p>
-		<section class="col-span-full">
-			<h1 class="font-semibold text-2xl">Projects</h1>
-			<ul role="list" class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-8">
+		<section
+			class="grid max-w-xl mx-auto grid-cols-1 mt-24 items-baseline gap-y-8 gap-x-16 lg:gap-x-24 lg:max-w-none lg:grid-cols-2"
+		>
+			<ul role="list" class="space-y-8">
 				{
 					projects.map((project) => (
-						<li class="flex flex-col gap-y-1 items-start py-4">
-							<div class="font-semibold text-base w-full leading-auto flex justify-between">
-								<a href={`/projects/${project.slug}`} class="hover:underline">
-									{project.data.name}
+						<li class="flex flex-col items-start border rounded-2xl p-6 hover:bg-accent-300 relative transition-colors ease-in-out duration-400">
+							<h2 class="font-semibold text-base leading-auto">
+								<a href={`/projects/${project.slug}`}>
+									<span class="absolute z-0 inset-0" />
+									<span>{project.data.name}</span>
 								</a>
-							</div>
-							<p class="text-sm text-pretty leading-auto">
+							</h2>
+							<time
+								datetime={project.data.publishDate.toDateString()}
+								class="order-first text-sm text-gray-1100 mb-1.5"
+							>
+								{Intl.DateTimeFormat("en-GB", {
+									month: "long",
+									year: "numeric",
+								}).format(project.data.publishDate)}
+							</time>
+							<p class="mt-2 text-sm text-pretty leading-auto">
 								{project.data.description}
 							</p>
 						</li>
 					))
 				}
 			</ul>
-		</section>
-		<section class="col-span-full">
-			<p class="text-4xl text-pretty font-medium leading-auto">
-				I have lots in store for the future&mdash;stay tuned.
-			</p>
+			<div class="flex flex-col gap-y-10 h-full">
+				<div class="rounded-2xl border p-6">
+					<h2 class="text-sm font-semibold">Programming Languages</h2>
+					<ul class="mt-6 flex gap-4 w-full justify-between">
+						{
+							langs.map((lang) => (
+								<li
+									title={lang.name}
+									class="h-15 w-15 grid place-items-center flex-none rounded-full shadow-md shadow-gray-600 ring-1 ring-gray-600"
+								>
+									<Image
+										src={lang.img}
+										class="h-10.5 w-10.5"
+										alt={lang.name}
+										loading="eager"
+										format="svg"
+									/>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+				<div class="rounded-2xl border overflow-hidden flex-grow relative">
+					<!-- Using a public domain image for now. TODO: Use my own images -->
+					<!-- Image Credit: Wandering VirgoNurse -->
+					<Picture
+						formats={["webp", "avif"]}
+						class="object-cover hover:scale-105 transition-transform ease-in-out duration-400 h-full"
+						src={coloradoSprings}
+						alt=""
+					/>
+				</div>
+			</div>
 		</section>
 	</main>
 </BaseLayout>

@@ -1,17 +1,21 @@
 ---
 import "../styles/global.css";
-import { SEO } from "astro-seo";
+import { AstroSeo } from "@astrolib/seo";
 import { Image } from "astro:assets";
-import logo from "../images/gravy.png";
+import logo from "../images/gravy.tiff";
 
 interface Props {
 	title?: string;
 	description?: string;
+	canonical?: string;
+	pubDatetime?: Date;
 }
 
 const {
 	title = "Gravy59",
 	description = "Student dev who enjoys free software",
+	canonical = new URL(Astro.url.pathname, Astro.site).href,
+	pubDatetime,
 } = Astro.props;
 ---
 
@@ -20,75 +24,91 @@ const {
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/png" href="/icon.png" />
-		<SEO
+		<AstroSeo
 			title={title}
 			titleTemplate="%s | Gravy59"
 			description={description}
+			,
+			{canonical}
 			openGraph={{
-				basic: {
-					title,
-					image: "/icon.png",
-					type: "website",
-				},
-				optional: {
-					description,
-				},
-			}}
-			twitter={{ creator: "@gravy59_" }}
-			extend={{
-				link: [
+				url: canonical,
+				images: [
 					{
-						rel: "icon",
+						url: "/og-default.png",
+						alt: "Gravy59",
 						type: "image/png",
-						href: "/icon.png",
+						width: 4096,
+						height: 4096,
 					},
 				],
+				article: {
+					publishedTime: pubDatetime?.toISOString(),
+				},
+				type: "website",
+				description,
 			}}
+			twitter={{ handle: "@gravy59_" }}
 		/>
-		<link rel="preconnect" href="https://rsms.me/" />
-		<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+
+		<link
+			rel="preload"
+			href="/assets/Geist[wght].woff2"
+			as="font"
+			crossorigin
+			type="font/woff2"
+		/>
 	</head>
-	<body class="px-8 sm:px-16 xl:px-48 pt-8 flex flex-col">
-		<header class="h-16 items-center flex mb-8">
-			<a href="/" aria-label="Home">
-				<Image src={logo} alt="Gravy59" class="w-14" aria-hidden />
-			</a>
-		</header>
-		<slot />
-		<footer
-			class="mt-24 flex-none border-t border-zinc-100 pb-16 pt-10 dark:border-zinc-700/40 flex flex-col items-center justify-between gap-6 sm:flex-row"
-		>
-			<dl
-				class="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-zinc-800 dark:text-zinc-200"
+	<body class="p-8 sm:px-16">
+		<div class="flex flex-col min-h-full flex-auto mx-auto max-w-5xl w-full">
+			<header class="items-center flex mb-8">
+				<a href="/" aria-label="Home">
+					<Image
+						src={logo}
+						alt="Gravy59"
+						class="w-14"
+						aria-hidden
+						loading="eager"
+					/>
+				</a>
+			</header>
+			<slot />
+			<footer
+				class="mt-32 flex-none border-t pb-16 pt-10 flex flex-col items-center justify-between gap-6 sm:flex-row"
 			>
-				<dt>Current mood:</dt>
-				<dd>Vibing</dd>
-			</dl>
-			<p class="text-sm text-zinc-400 dark:text-zinc-500">
-				This work is licensed under <a
-					class="underline"
-					href="https://creativecommons.org/licenses/by/4.0/"
-					target="_blank"
-					rel="noopener noreferrer">CC BY 4.0</a
-				> with inspiration from <a
-					href="https://rsms.me"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="underline">Rasmus Andersson</a
+				<dl
+					class="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium"
 				>
-			</p>
-		</footer>
-		{
-			process.env.NODE_ENV !== "production" && (
-				<div class="fixed bottom-1 left-1 z-50 flex h-6 w-6 items-center justify-center rounded-full bg-gray-800 p-3 font-mono text-xs text-white">
-					<div class="block sm:hidden">xs</div>
-					<div class="hidden sm:block md:hidden">sm</div>
-					<div class="hidden md:block lg:hidden">md</div>
-					<div class="hidden lg:block xl:hidden">lg</div>
-					<div class="hidden xl:block 2xl:hidden">xl</div>
-					<div class="hidden 2xl:block">2xl</div>
-				</div>
-			)
-		}
+					<dt>Current mood:</dt>
+					<dd>Vibing</dd>
+				</dl>
+				<!-- @ts-expect-error -->
+				<p
+					xmlns:cc="http://creativecommons.org/ns#"
+					class="text-sm text-gray-1100"
+				>
+					The content of this website is licensed under <a
+						class="underline"
+						href="https://creativecommons.org/licenses/by/4.0/"
+						target="_blank"
+						rel="license noopener noreferrer">CC BY-SA 4.0</a
+					>.
+				</p>
+			</footer>
+			{
+				process.env.NODE_ENV !== "production" && (
+					<div class="fixed bottom-1 left-1 z-50 flex h-6 w-6 items-center justify-center rounded-full bg-gray-1200 p-3 font-mono text-xs text-white">
+						<div class="block sm:hidden">xs</div>
+						<div class="hidden sm:block md:hidden">sm</div>
+						<div class="hidden md:block lg:hidden">md</div>
+						<div class="hidden lg:block xl:hidden">lg</div>
+						<div class="hidden xl:block 2xl:hidden">xl</div>
+						<div class="hidden 2xl:block">2xl</div>
+					</div>
+				)
+			}
+		</div>
 	</body>
 </html>
