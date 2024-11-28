@@ -8,32 +8,44 @@
 
 	--leading-auto: calc(4px + 2ex);
 
-	--color-accent-100: oklch(99.4% 0.0035 256.3);
-	--color-accent-200: oklch(98.1% 0.0077 256.3);
-	--color-accent-300: oklch(96.1% 0.0183 256.3);
-	--color-accent-400: oklch(93.5% 0.029 256.3);
-	--color-accent-500: oklch(90.3% 0.0392 256.3);
-	--color-accent-600: oklch(86.2% 0.0502 256.3);
-	--color-accent-700: oklch(80.6% 0.0626 256.3);
-	--color-accent-800: oklch(72.9% 0.0842 256.3);
-	--color-accent-900: oklch(51.7% 0.106 256.3);
-	--color-accent-1000: oklch(46.9% 0.106 256.3);
-	--color-accent-1100: oklch(52.1% 0.106 256.3);
-	--color-accent-1200: oklch(34% 0.0559 256.3);
-	--color-accent-surface: color(display-p3 0.9569 0.9725 0.9961 / 0.8);
+	--color-gray-1: color(display-p3 0.988 0.988 0.992);
+	--color-gray-2: color(display-p3 0.976 0.976 0.984);
+	--color-gray-3: color(display-p3 0.94 0.941 0.953);
+	--color-gray-4: color(display-p3 0.908 0.909 0.925);
+	--color-gray-5: color(display-p3 0.88 0.881 0.901);
+	--color-gray-6: color(display-p3 0.85 0.852 0.876);
+	--color-gray-7: color(display-p3 0.805 0.808 0.838);
+	--color-gray-8: color(display-p3 0.727 0.733 0.773);
+	--color-gray-9: color(display-p3 0.547 0.553 0.592);
+	--color-gray-10: color(display-p3 0.503 0.512 0.549);
+	--color-gray-11: color(display-p3 0.379 0.392 0.421);
+	--color-gray-12: color(display-p3 0.113 0.125 0.14);
 
-	--color-gray-100: oklch(99.1% 0.0025 255.5);
-	--color-gray-200: oklch(98.2% 0.005 255.5);
-	--color-gray-300: oklch(95.6% 0.0075 255.5);
-	--color-gray-400: oklch(93.1% 0.0101 255.5);
-	--color-gray-500: oklch(91% 0.0127 255.5);
-	--color-gray-600: oklch(88.8% 0.0154 255.5);
-	--color-gray-700: oklch(85.3% 0.0195 255.5);
-	--color-gray-800: oklch(79.4% 0.0266 255.5);
-	--color-gray-900: oklch(64.6% 0.0273 255.5);
-	--color-gray-1000: oklch(61% 0.0267 255.5);
-	--color-gray-1100: oklch(50.3% 0.0231 255.5);
-	--color-gray-1200: oklch(24.1% 0.0165 255.5);
+	--color-gray-alpha-1: color(display-p3 0.024 0.024 0.349 / 0.012);
+	--color-gray-alpha-2: color(display-p3 0.024 0.024 0.349 / 0.024);
+	--color-gray-alpha-3: color(display-p3 0.004 0.004 0.204 / 0.059);
+	--color-gray-alpha-4: color(display-p3 0.012 0.012 0.184 / 0.091);
+	--color-gray-alpha-5: color(display-p3 0.004 0.039 0.2 / 0.122);
+	--color-gray-alpha-6: color(display-p3 0.008 0.008 0.165 / 0.15);
+	--color-gray-alpha-7: color(display-p3 0.008 0.027 0.184 / 0.197);
+	--color-gray-alpha-8: color(display-p3 0.004 0.031 0.176 / 0.275);
+	--color-gray-alpha-9: color(display-p3 0.004 0.02 0.106 / 0.455);
+	--color-gray-alpha-10: color(display-p3 0.004 0.027 0.098 / 0.499);
+	--color-gray-alpha-11: color(display-p3 0 0.02 0.063 / 0.62);
+	--color-gray-alpha-12: color(display-p3 0 0.012 0.031 / 0.887);
+
+	--color-indigo-1: color(display-p3 0.992 0.992 0.996);
+	--color-indigo-2: color(display-p3 0.971 0.977 0.998);
+	--color-indigo-3: color(display-p3 0.933 0.948 0.992);
+	--color-indigo-4: color(display-p3 0.885 0.914 1);
+	--color-indigo-5: color(display-p3 0.831 0.87 1);
+	--color-indigo-6: color(display-p3 0.767 0.814 0.995);
+	--color-indigo-7: color(display-p3 0.685 0.74 0.957);
+	--color-indigo-8: color(display-p3 0.569 0.639 0.916);
+	--color-indigo-9: color(display-p3 0.276 0.384 0.837);
+	--color-indigo-10: color(display-p3 0.234 0.343 0.801);
+	--color-indigo-11: color(display-p3 0.256 0.354 0.755);
+	--color-indigo-12: color(display-p3 0.133 0.175 0.348);
 }
 
 /*
@@ -50,18 +62,56 @@
 	::before,
 	::backdrop,
 	::file-selector-button {
-		border-color: var(--color-gray-600, currentColor);
+		border-color: var(--color-gray-6, currentColor);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--color-gray-1: color(display-p3 0.067 0.067 0.074);
+			--color-gray-2: color(display-p3 0.095 0.098 0.105);
+			--color-gray-3: color(display-p3 0.13 0.135 0.145);
+			--color-gray-4: color(display-p3 0.156 0.163 0.176);
+			--color-gray-5: color(display-p3 0.183 0.191 0.206);
+			--color-gray-6: color(display-p3 0.215 0.226 0.244);
+			--color-gray-7: color(display-p3 0.265 0.28 0.302);
+			--color-gray-8: color(display-p3 0.357 0.381 0.409);
+			--color-gray-9: color(display-p3 0.415 0.431 0.463);
+			--color-gray-10: color(display-p3 0.469 0.483 0.514);
+			--color-gray-11: color(display-p3 0.692 0.704 0.728);
+			--color-gray-12: color(display-p3 0.93 0.933 0.94);
+
+			--color-gray-alpha-1: color(display-p3 0 0 0 / 0);
+			--color-gray-alpha-2: color(display-p3 0.875 0.992 1 / 0.034);
+			--color-gray-alpha-3: color(display-p3 0.882 0.933 0.992 / 0.077);
+			--color-gray-alpha-4: color(display-p3 0.882 0.953 0.996 / 0.111);
+			--color-gray-alpha-5: color(display-p3 0.878 0.929 0.996 / 0.145);
+			--color-gray-alpha-6: color(display-p3 0.882 0.949 0.996 / 0.183);
+			--color-gray-alpha-7: color(display-p3 0.882 0.929 1 / 0.246);
+			--color-gray-alpha-8: color(display-p3 0.871 0.937 1 / 0.361);
+			--color-gray-alpha-9: color(display-p3 0.898 0.937 1 / 0.42);
+			--color-gray-alpha-10: color(display-p3 0.918 0.945 1 / 0.475);
+			--color-gray-alpha-11: color(display-p3 0.949 0.969 0.996 / 0.708);
+			--color-gray-alpha-12: color(display-p3 0.988 0.992 1 / 0.937);
+
+			--color-indigo-1: color(display-p3 0.068 0.074 0.118);
+			--color-indigo-2: color(display-p3 0.081 0.089 0.144);
+			--color-indigo-3: color(display-p3 0.105 0.141 0.275);
+			--color-indigo-4: color(display-p3 0.129 0.18 0.369);
+			--color-indigo-5: color(display-p3 0.163 0.22 0.439);
+			--color-indigo-6: color(display-p3 0.203 0.262 0.5);
+			--color-indigo-7: color(display-p3 0.245 0.309 0.575);
+			--color-indigo-8: color(display-p3 0.285 0.362 0.674);
+			--color-indigo-9: color(display-p3 0.276 0.384 0.837);
+			--color-indigo-10: color(display-p3 0.354 0.445 0.866);
+			--color-indigo-11: color(display-p3 0.63 0.69 1);
+			--color-indigo-12: color(display-p3 0.848 0.881 0.99);
+		}
 	}
 }
 
 @layer base {
-	*,
-	::before,
-	::after {
-		border-color: var(--color-gray-600);
-	}
 	:root {
-		@apply text-gray-1200 dark:bg-gray-1200 bg-white dark:text-gray-100;
+		@apply text-gray-12 dark:bg-gray-1 bg-white;
 		font-feature-settings:
 			"liga" 1,
 			"calt" 1,

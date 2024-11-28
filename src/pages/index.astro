@@ -27,10 +27,10 @@ const langs = [
 <BaseLayout title="Home">
 	<main class="mt-28 flex-auto">
 		<div class="max-w-2xl">
-			<h1 class="text-4xl font-bold tracking-tight text-gray-1200 sm:text-5xl">
+			<h1 class="text-4xl font-bold tracking-tight text-gray-12 sm:text-5xl">
 				Hey there.&nbsp;&#x1F44B;&#x1F3FB;
 			</h1>
-			<p class="mt-6 text-gray-1100 text-pretty">
+			<p class="mt-6 text-gray-12 text-pretty">
 				I&rsquo;m a student programmer who loves music, sci-fi, and learning
 				random things. I am currently studying computer science at Pikes Peak
 				State College and have a passion for programming.
@@ -42,7 +42,7 @@ const langs = [
 			<ul role="list" class="space-y-8">
 				{
 					projects.map((project) => (
-						<li class="flex flex-col items-start border rounded-2xl p-6 hover:bg-accent-300 relative transition-colors ease-in-out duration-400">
+						<li class="flex flex-col items-start border rounded-2xl p-6 hover:bg-indigo-3 relative transition-colors ease-in-out duration-400">
 							<h2 class="font-semibold text-base leading-auto">
 								<a href={`/projects/${project.slug}`}>
 									<span class="absolute z-0 inset-0" />
@@ -73,7 +73,7 @@ const langs = [
 							langs.map((lang) => (
 								<li
 									title={lang.name}
-									class="h-15 w-15 grid place-items-center flex-none rounded-full shadow-md shadow-gray-600 ring-1 ring-gray-600"
+									class="h-15 w-15 grid place-items-center flex-none rounded-full shadow-md shadow-gray-alpha-6 dark:shadow-none ring-1 ring-gray-6"
 								>
 									<Image
 										src={lang.img}
@@ -87,12 +87,12 @@ const langs = [
 						}
 					</ul>
 				</div>
-				<div class="rounded-2xl border overflow-hidden flex-grow relative">
+				<div class="rounded-2xl border overflow-hidden flex-grow">
 					<!-- Using a public domain image for now. TODO: Use my own images -->
 					<!-- Image Credit: Wandering VirgoNurse -->
 					<Picture
 						formats={["webp", "avif"]}
-						class="object-cover hover:scale-105 transition-transform ease-in-out duration-400 h-full"
+						class="object-cover hover:scale-105 dark:hover:grayscale-0 dark:hover:brightness-100 transition ease-in-out duration-400 h-full dark:grayscale-25 dark:brightness-90"
 						src={coloradoSprings}
 						alt=""
 					/>
