@@ -11,9 +11,28 @@ interface Props {
 }
 
 const { title, date, description, cover, coverAlt } = Astro.props;
+
+const schema = {
+	"@context": "https://schema.org",
+	"@type": "BlogPosting",
+	headline: title,
+	datePublished: date,
+	description,
+	image: cover ? cover.src : null,
+	url: new URL(Astro.url.pathname, Astro.site),
+	author: {
+		"@type": "Person",
+		name: "Gravy59",
+	},
+};
 ---
 
 <BaseLayout title={title} description={description} pubDatetime={date}>
+	<script
+		type="application/ld+json"
+		is:inline
+		set:html={JSON.stringify(schema)}
+	/>
 	<main class="mt-28 flex-auto">
 		<article class="max-w-2xl">
 			<header class="flex flex-col">
