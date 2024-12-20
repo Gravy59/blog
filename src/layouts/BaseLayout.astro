@@ -64,14 +64,9 @@ const {
 	<body class="p-8 sm:px-16">
 		<div class="flex flex-col min-h-full flex-auto mx-auto max-w-5xl w-full">
 			<header class="items-center flex mb-8">
-				<a href="/" aria-label="Home">
-					<Image
-						src={logo}
-						alt="Gravy59"
-						class="w-14"
-						aria-hidden
-						loading="eager"
-					/>
+				<a href="/" rel="home">
+					<span class="sr-only">Home</span>
+					<Image src={logo} alt="Gravy59" class="w-14" loading="eager" />
 				</a>
 			</header>
 			<slot />
