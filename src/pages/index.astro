@@ -30,7 +30,7 @@ const langs = [
 ---
 
 <BaseLayout title="Home">
-	<main class="mt-28 flex-auto">
+	<main class="mt-28 flex-auto max-w-2xl lg:max-w-5xl w-full mx-auto">
 		<div class="max-w-2xl">
 			<h1 class="text-4xl font-bold tracking-tight text-gray-12 sm:text-5xl">
 				Hey there.&nbsp;&#x1F44B;&#x1F3FB;
@@ -73,7 +73,7 @@ const langs = [
 			<div class="flex flex-col gap-y-10 h-full">
 				<div class="rounded-2xl border p-6">
 					<h2 class="text-sm font-semibold">Programming Languages</h2>
-					<ul class="mt-6 flex gap-4 w-full justify-between">
+					<ul class="mt-6 flex flex-wrap gap-4 w-full justify-between">
 						{
 							langs.map((lang) => (
 								<li
@@ -94,7 +94,9 @@ const langs = [
 				</div>
 				<div class="rounded-2xl border overflow-hidden aspect-square">
 					<Picture
-						formats={["avif"]}
+						formats={["avif", "webp"]}
+						widths={[540, 720, 1280, 2560]}
+						sizes={`(max-width: 640px) 540px, (max-width: 768px) 720px, (max-width: 1280px) 1280px, 2560px`}
 						class="aspect-square object-cover hover:scale-105 dark:hover:grayscale-0 dark:hover:brightness-100 transition ease-in-out duration-400 h-full dark:grayscale-25 dark:brightness-90"
 						src={coloradoSprings}
 						alt=""

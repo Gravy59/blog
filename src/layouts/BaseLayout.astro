@@ -62,16 +62,18 @@ const {
 		/>
 	</head>
 	<body class="p-8 sm:px-16">
-		<div class="flex flex-col min-h-full flex-auto mx-auto max-w-5xl w-full">
+		<div class="overflow-hidden flex flex-col flex-auto">
 			<header class="items-center flex mb-8">
-				<a href="/" rel="home">
-					<span class="sr-only">Home</span>
-					<Image src={logo} alt="Gravy59" class="w-14" loading="eager" />
-				</a>
+				<div class="max-w-2xl lg:max-w-5xl w-full mx-auto">
+					<a href="/" rel="home">
+						<span class="sr-only">Home</span>
+						<Image src={logo} alt="Gravy59" class="w-14" loading="eager" />
+					</a>
+				</div>
 			</header>
 			<slot />
 			<footer
-				class="mt-32 flex-none border-t pb-16 pt-10 flex flex-col items-center justify-between gap-6 sm:flex-row"
+				class="mt-32 flex-none border-t pb-16 pt-10 max-w-2xl lg:max-w-5xl w-full mx-auto flex flex-col items-center justify-between gap-6 sm:flex-row"
 			>
 				<dl
 					class="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium"
@@ -88,7 +90,7 @@ const {
 						class="underline"
 						href="https://creativecommons.org/licenses/by/4.0/"
 						target="_blank"
-						rel="license noopener noreferrer">CC BY-SA 4.0</a
+						rel="license noopener noreferrer">CC&nbsp;BY&#x2011;SA&nbsp;4.0</a
 					>.
 				</p>
 			</footer>
