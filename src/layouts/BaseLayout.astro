@@ -28,7 +28,6 @@ const {
 			title={title}
 			titleTemplate="%s | Gravy59"
 			description={description}
-			,
 			{canonical}
 			openGraph={{
 				url: canonical,
@@ -42,7 +41,7 @@ const {
 					},
 				],
 				article: {
-					publishedTime: pubDatetime?.toISOString(),
+					publishedTime: pubDatetime?.toISOString() 
 				},
 				type: "website",
 				description,
