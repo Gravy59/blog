@@ -1,0 +1,82 @@
+---
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+import Layout from "./Layout.astro";
+
+type Props = CollectionEntry<"writing">["data"];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<Layout {title} {description}>
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org/",
+      "@type": "BlogPosting",
+      headline: title,
+      datePublished: pubDate,
+      dateModified: updatedDate,
+      image: heroImage,
+      description,
+      url: new URL(Astro.url.pathname, Astro.site),
+      author: {
+        "@type": "Person",
+        name: "Gravy59",
+      },
+    })}
+  />
+  <main class="flex-auto">
+    <article>
+      <div class="col-span-full">
+        {
+          heroImage && (
+            <img
+              class="border border-zinc-600 shadow-sm"
+              width={1020}
+              height={510}
+              src={heroImage}
+              alt=""
+            />
+          )
+        }
+        <h1 class="mt-4 text-center text-3xl font-extrabold text-balance">
+          {title}
+        </h1>
+        <div
+          class="between:after:mx-4 between:after:content-['·'] between:after:text-zinc-600 flex items-center justify-center"
+        >
+          <FormattedDate date={pubDate} />
+          {
+            updatedDate && (
+              <p>
+                Last updated on <FormattedDate date={updatedDate} />
+              </p>
+            )
+          }
+        </div>
+        <hr class="my-4 text-zinc-600" />
+      </div>
+      <div
+        class="prose prose-p:text-pretty prose-h2:text-balance prose-h3:text-balance mx-auto max-md:col-span-full md:col-start-2"
+      >
+        <slot />
+      </div>
+    </article>
+  </main>
+</Layout>
+<!-- This is bizzare, but I have confirmed tailwind does compile
+     `between:after:content-['·']`. However, the browser
+     apparently cannot parse whatever Tailwind does.
+     It appears to be the escape code (\xB7) -->
+<style>
+  .between\:after\:content-\[\'·\'\] {
+    :where(& > :not(:last-child)) {
+      &::after {
+        --tw-content: "·";
+        content: var(--tw-content);
+      }
+    }
+  }
+</style>

@@ -1,10 +1,10 @@
 ---
 title: The Threats and Opportunities of AI-Generated Content
-summary:
+description:
   AI-generated content is transforming creativity, education, and public trust,
   raising many concerns but also offering opportunities for productivity and
   innovation.
-publishDate: 2024-11-10
+pubDate: 2024-11-10
 ---
 
 When fake, AI-generated images of Taylor Swift spread virally across social

@@ -1,0 +1,18 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "../consts";
+import gravy from "../images/gravy.tiff";
+import { Image } from "astro:assets";
+---
+
+<header class="mb-12 w-full">
+  <nav class="flex items-center justify-between font-medium italic">
+    <a href="/" rel="home me" aria-label="Home"
+      ><Image src={gravy} alt="" aria-hidden class="w-14" /></a
+    >
+    <div class="space-x-6">
+      <HeaderLink href="/posts">Writing</HeaderLink>
+      <HeaderLink href="/about">About</HeaderLink>
+    </div>
+  </nav>
+</header>

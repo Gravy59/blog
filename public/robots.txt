@@ -1,4 +1,0 @@
-User-Agent: *
-
-Host: https://gravy59.vercel.app
-Sitemap: https://gravy59.vercel.app/sitemap-index.xml
