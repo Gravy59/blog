@@ -2,12 +2,12 @@
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import coloradoSprings from "../images/coloradoSprings.avif";
-import { Picture } from "astro:assets";
+import Figure from "../components/Figure.astro";
 
 const posts = await getCollection("writing").then((posts) =>
   posts
     .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-    .slice(0, 3),
+    .slice(0, 3)
 );
 ---
 
@@ -68,18 +68,7 @@ const posts = await getCollection("writing").then((posts) =>
           }
         </ul>
       </div>
-      <figure>
-        <Picture
-          formats={["avif", "webp"]}
-          widths={[540, 720, 1280, 2560]}
-          sizes={`(max-width: 640px) 540px, (max-width: 768px) 720px, (max-width: 1280px) 1280px, 2560px`}
-          src={coloradoSprings}
-          alt="Scenic view from Eagles Peak in Colorado Springs. A vast expanse of dense green forest stretches across rolling hills. In the background, Pikes Peak stands with its partially snow-capped summit. The sky is a mix of blue and white with scattered clouds casting soft shadows over the landscape. The foreground features reddish-brown rocky terrain."
-        />
-        <figcaption class="mt-2.5 text-gray-600 italic">
-          Eagles Peak, Colorado
-        </figcaption>
-      </figure>
+      <Figure src={coloradoSprings} alt="Eagles Peak, Colorado" />
     </div>
   </main>
 </Layout>

@@ -8,7 +8,12 @@ type Props = CollectionEntry<"writing">["data"];
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<Layout {title} {description}>
+<Layout
+  {title}
+  {description}
+  image={heroImage ??
+    new URL(Astro.url.pathname + "og.png", Astro.site).toString()}
+>
   <script
     is:inline
     type="application/ld+json"
@@ -59,24 +64,10 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
         <hr class="my-4 text-zinc-600" />
       </div>
       <div
-        class="prose prose-p:text-pretty prose-h2:text-balance prose-h3:text-balance mx-auto max-md:col-span-full md:col-start-2"
+        class="prose prose-zinc md:prose-lg prose-p:text-pretty prose-h2:text-balance prose-h3:text-balance prose-a:decoration-dotted prose-img:border prose-img:border-zinc-600 lg:prose-xl mx-auto max-w-3xl"
       >
         <slot />
       </div>
     </article>
   </main>
 </Layout>
-<!-- This is bizzare, but I have confirmed tailwind does compile
-     `between:after:content-['·']`. However, the browser
-     apparently cannot parse whatever Tailwind does.
-     It appears to be the escape code (\xB7) -->
-<style>
-  .between\:after\:content-\[\'·\'\] {
-    :where(& > :not(:last-child)) {
-      &::after {
-        --tw-content: "·";
-        content: var(--tw-content);
-      }
-    }
-  }
-</style>
