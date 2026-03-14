@@ -1,8 +1,7 @@
 @import "./reset.css";
-@import "./fonts.css";
 
 :root {
-  font-family: "DejaVu Sans", sans-serif;
+  font-family: var(--font-dejavu-sans);
 }
 
 body {
@@ -22,6 +21,15 @@ hr {
   background-size: 3px 3px;
 }
 
-time {
-  font-size: 0.875rem;
+/* Tailwind CSS */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border-width: 0;
 }

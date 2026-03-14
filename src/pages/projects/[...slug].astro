@@ -1,6 +1,6 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
+import BlogPost from "@/layouts/BlogPost.astro";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -15,24 +15,6 @@ const project = Astro.props;
 const { Content } = await render(project);
 ---
 
-<Layout title={project.data.title}>
-  <script
-    type="application/ld+json"
-    set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      headline: project.data.title,
-      datePublished: project.data.pubDate,
-      dateModified: project.data.updatedDate ?? undefined,
-      description: project.data.summary ?? undefined,
-      url: new URL(Astro.url.pathname, Astro.site),
-      author: {
-        "@type": "Person",
-        name: "Gravy59",
-      },
-    })}
-  />
-  <h1>{project.data.title}</h1>
-  <p>Published on: {project.data.pubDate.toDateString()}</p>
+<BlogPost {...project.data}>
   <Content />
-</Layout>
+</BlogPost>
