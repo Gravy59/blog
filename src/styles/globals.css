@@ -1,0 +1,27 @@
+@import "./reset.css";
+@import "./fonts.css";
+
+:root {
+  font-family: "DejaVu Sans", sans-serif;
+}
+
+body {
+  margin: auto;
+  padding: 1rem;
+  max-inline-size: 65ch;
+}
+
+pre {
+  padding: 0.375em;
+}
+
+hr {
+  border: none;
+  height: 0.5rem;
+  background-image: radial-gradient(gray 0.5px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+time {
+  font-size: 0.875rem;
+}

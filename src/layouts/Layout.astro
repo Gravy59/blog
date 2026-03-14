@@ -1,23 +1,80 @@
+---
+import { Image } from "astro:assets";
+
+import "../styles/globals.css";
+import gravyboat from "../assets/gravy.webp";
+import BaseHead from "../components/BaseHead.astro";
+
+type Props = {
+  title: string;
+};
+
+const { title } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <BaseHead title={title} />
+  </head>
+  <body>
+    {
+      Astro.url.pathname !== "/" && (
+        <a class="home-link" href="/">
+          [Return Home]
+        </a>
+      )
+    }
+    <header>
+      <div class="row">
+        <Image priority src={gravyboat} widths={[240,540]} sizes={`(max-width: 640px) 240px, 540px`} alt="" />
+        <h1>Gravy59</h1>
+      </div>
+      <hr role="none" />
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <hr role="none" />
+      <small
+        >Content on this website is licensed under <a
+          href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a
+        > unless otherwise stated.</small
+      >
+    </footer>
+  </body>
 </html>
-
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  header {
+    .row {
+      line-height: 1.1;
+    }
+    img {
+      font-size: 2em;
+      height: 1lh;
+      width: auto;
+    }
+    h1 {
+      margin-block-start: 0;
+    }
+  }
+  .row {
+    display: flex;
+    gap: 1rem;
+  }
+  main {
+    margin-block-end: auto;
+  }
+  footer {
+    margin-block-start: auto;
+  }
+
+  .home-link {
+    font-size: 0.875rem;
+    display: block;
+    position: fixed;
+    inset-block-start: 1rem;
+    inset-inline-end: 1rem;
+  }
 </style>
