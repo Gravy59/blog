@@ -1,5 +1,5 @@
 ---
-title: "\"Nothing to hide, nothing to fear\""
+title: '"Nothing to hide, nothing to fear"'
 pubDate: 2025-12-28
 ---
 

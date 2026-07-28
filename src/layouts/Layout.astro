@@ -23,20 +23,6 @@ const {
   updatedDate,
 } = Astro.props;
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: `${title}`,
-  image: `${image}`,
-  datePublished: `${pubDate?.toISOString()}`,
-  ...(updatedDate && { dateModified: updatedDate.toISOString() }),
-  author: [
-    {
-      "@type": "Person",
-      name: `Gravy59`,
-    },
-  ],
-};
 ---
 
 <!doctype html>
@@ -54,10 +40,9 @@ const structuredData = {
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
-    <Font
-      cssVariable="--font-dejavu-sans"
-      preload={[{ subset: "latin", weight: 400, style: "normal" }]}
-    />
+    <Font cssVariable="--font-body" />
+
+    <Font cssVariable="--font-mono" />
 
     <title>{title}</title>
     <meta name="title" content={title} />
@@ -95,11 +80,7 @@ const structuredData = {
     <meta property="twitter:site" content="@gravy59_" />
     <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
-    <script
-      type="application/ld+json"
-      is:inline
-      set:html={JSON.stringify(structuredData)}
-    />
+  <slot name="structured-data" />
 
     {
       PUBLIC_GOOGLE_SITE_VERIFICATION && (
@@ -110,65 +91,30 @@ const structuredData = {
       )
     }
   </head>
-  <body>
-    <header>
-      <div class="row">
-        <a href="/" aria-label="Home">
-          <Image
-            priority
-            src={FallbackImage}
-            width={334}
-            layout="constrained"
-            alt=""
-          />
-        </a>
-        <h1>Gravy59</h1>
+  <body
+    class="bg-white px-6 py-4 font-(family-name:--font-body) dark:bg-stone-950"
+  >
+    <div
+      aria-hidden
+      class="user-select-none pointer-events-none fixed top-0 left-0 z-10 h-25 w-full bg-gradient-to-t from-transparent to-white mask-b-from-25% opacity-95 backdrop-blur-[5px] will-change-transform dark:to-stone-950"
+    >
+    </div>
+    <header class="mt-8 mb-12 border-b text-stone-800 dark:text-stone-200">
+      <div class="flex items-baseline gap-x-2 px-1.5 pb-1.5 leading-none">
+        <a href="/" class="italic"> Gravy59 </a>
       </div>
-      <hr role="none" />
     </header>
-    <main>
+
+    <main class="w-full max-w-168">
       <slot />
     </main>
-    <footer>
-      <hr role="none" />
+    <footer class="mt-16 text-stone-400 dark:text-stone-500">
       <small
         >Content on this website is licensed under <a
+          class="font-semibold text-sky-500 underline-offset-[0.15em] hover:underline hover:decoration-1"
           href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a
         > unless otherwise stated.</small
       >
     </footer>
   </body>
 </html>
-<style>
-  header {
-    .row {
-      line-height: 1.1;
-    }
-    img {
-      font-size: 2em;
-      height: 1lh;
-      width: auto;
-    }
-    h1 {
-      margin-block-start: 0;
-    }
-  }
-  .row {
-    display: flex;
-    gap: 1rem;
-  }
-  main {
-    margin-block-end: auto;
-  }
-  footer {
-    margin-block-start: auto;
-  }
-
-  .home-link {
-    font-size: 0.875rem;
-    display: block;
-    position: fixed;
-    inset-block-start: 1rem;
-    inset-inline-end: 1rem;
-  }
-</style>

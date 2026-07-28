@@ -1,0 +1,9 @@
+---
+const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Gravy59',
+    url: new URL(Astro.url.pathname, Astro.site),
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

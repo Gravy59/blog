@@ -1,6 +1,10 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
+import FormattedDate from "@/components/FormattedDate.astro";
+import WebsiteStructuredData from '@/components/WebsiteStructuredData.astro';
+import { Image } from "astro:assets";
+import Logo from "@/assets/gravy.webp";
 
 const posts = (
   await getCollection("blog", ({ data }) => data.draft !== true)
@@ -12,27 +16,52 @@ const projects = (await getCollection("projects")).sort(
 ---
 
 <Layout title="Gravy59">
-  <p>
-    This is the website of Gravy59. I am currently studying computer science at
-    Pikes Peak State College. I write sometimes and have a few projects
-    I&rsquo;m willing to share with the masses.
+  <WebsiteStructuredData slot="structured-data" />
+  <Image
+    class="mb-12 w-36"
+    priority
+    src={Logo}
+    width={334}
+    layout="constrained"
+    alt=""
+  />
+  <p class="mb-8 text-pretty text-stone-600 dark:text-stone-400">
+    This is the website of <em>Gravy59</em>. I am currently studying computer
+    science at Pikes Peak State College. I write sometimes and have a few
+    projects I&rsquo;m willing to share with the masses.
   </p>
-  <h2>Writing</h2>
-  <ul>
+  <h2 class="mb-2 font-semibold text-stone-900 dark:text-stone-200">Writing</h2>
+  <ul class="mb-4">
     {
       posts.map((post) => (
         <li>
-          <a href={`/blog/${post.id}`}>{post.data.title}</a>
+          <a
+            href={`/blog/${post.id}`}
+            class="text-sky-600 hover:underline hover:decoration-1 hover:underline-offset-2"
+          >
+            {post.data.title}
+          </a>
+          <FormattedDate
+            class="text-stone-600 italic before:ms-[1ex] before:content-['('] after:content-[')'] dark:text-stone-400"
+            date={post.data.updatedDate ?? post.data.pubDate}
+          />
         </li>
       ))
     }
   </ul>
-  <h2>Projects</h2>
-  <ul>
+  <h2 class="mb-2 font-semibold text-stone-900 dark:text-stone-200">
+    Projects
+  </h2>
+  <ul class="mb-4">
     {
       projects.map((project) => (
         <li>
-          <a href={`/projects/${project.id}`}>{project.data.title}</a>
+          <a
+            href={`/projects/${project.id}`}
+            class="text-sky-600 hover:underline hover:decoration-1 hover:underline-offset-2"
+          >
+            {project.data.title}
+          </a>
         </li>
       ))
     }

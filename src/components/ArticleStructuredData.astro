@@ -1,0 +1,36 @@
+---
+import type { ImageMetadata } from "astro";
+import Image from "@/assets/gravy.webp";
+
+const {title, pubDate, updatedDate, description,image} = Astro.props;
+interface Props {
+  title?: string;
+  description?: string;
+  image?: ImageMetadata;
+  pubDate?: Date;
+    updatedDate?: Date;
+}
+
+const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description: description ?? undefined,
+    datePublished: pubDate.toISOString(),
+    dateModified: updatedDate?.toISOString() ?? undefined,
+    url: new URL(Astro.url.pathname, Astro.site),
+    thumbnailUrl: Image.src,
+    image: {
+        '@type': 'ImageObject',
+        url: Image.src,
+        width: Image.width,
+        height: Image.height,
+    },
+    author: {
+        '@type': 'Person',
+		name: 'Gravy59',
+    },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

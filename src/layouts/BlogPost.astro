@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
+import ArticleStructuredData from "@/components/ArticleStructuredData.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -9,19 +10,23 @@ const { title, summary, pubDate, updatedDate } = Astro.props;
 ---
 
 <Layout {title} description={summary ?? undefined} {pubDate} {updatedDate}>
-  {
-    updatedDate ? (
-      <small>
-        Updated:
-        <FormattedDate date={updatedDate} />
-      </small>
-    ) : (
-      <small>
-        <span class="sr-only">Published:</span>
-        <FormattedDate date={pubDate} />
-      </small>
-    )
-  }
-  <h1>{title}</h1>
-  <slot />
+  <ArticleStructuredData slot="structured-data" title={title} pubDate={pubDate} updatedDate={updatedDate} />
+  <article>
+    <header class="mb-6">
+      <h1
+        class="mb-6 text-3xl font-bold text-stone-800 sm:text-4xl dark:text-stone-100"
+      >
+        {title}
+      </h1>
+      <p class="text-sm text-zinc-400 dark:text-zinc-500">
+        {updatedDate ? "Updated on: " : "Published on: "}
+        <FormattedDate date={updatedDate ?? pubDate} />
+      </p>
+    </header>
+    <div
+      class="prose dark:prose-invert prose-stone prose-a:text-sky-500 prose-a:underline-offset-2 prose-a:decoration-1 prose-a:hover:text-sky-800 prose-a:transition prose-code:font-normal lg:prose-lg mt-12 sm:mt-16"
+    >
+      <slot />
+    </div>
+  </article>
 </Layout>
