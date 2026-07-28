@@ -1,6 +1,6 @@
 ---
 import type { ImageMetadata } from "astro";
-import { Font, Image } from "astro:assets";
+import { Font } from "astro:assets";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import "@/styles/globals.css";
 import FallbackImage from "@/assets/gravy.webp";
@@ -23,6 +23,7 @@ const {
   updatedDate,
 } = Astro.props;
 
+const imageURL = new URL(image.src, Astro.url).href;
 ---
 
 <!doctype html>
@@ -50,11 +51,11 @@ const {
     <meta name="author" content="Gravy59" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={pubDate ? "article" : "website"} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={new URL(image.src, Astro.url)} />
+    <meta property="og:image" content={imageURL} />
 
     {
       pubDate && (
@@ -73,14 +74,14 @@ const {
       )
     }
 
-    <meta property="twitter:card" content="summary" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:site" content="@gravy59_" />
-    <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:site" content="@gravy59_" />
+    <meta name="twitter:image" content={imageURL} />
 
-  <slot name="structured-data" />
+    <slot name="structured-data" />
 
     {
       PUBLIC_GOOGLE_SITE_VERIFICATION && (
@@ -96,7 +97,7 @@ const {
   >
     <div
       aria-hidden
-      class="user-select-none pointer-events-none fixed top-0 left-0 z-10 h-25 w-full bg-gradient-to-t from-transparent to-white mask-b-from-25% opacity-95 backdrop-blur-[5px] will-change-transform dark:to-stone-950"
+      class="user-select-none pointer-events-none fixed top-0 left-0 z-10 hidden h-25 w-full bg-gradient-to-t from-transparent to-white mask-b-from-25% opacity-95 backdrop-blur-[5px] sm:block dark:to-stone-950"
     >
     </div>
     <header class="mt-8 mb-12 border-b text-stone-800 dark:text-stone-200">
@@ -108,10 +109,10 @@ const {
     <main class="w-full max-w-168">
       <slot />
     </main>
-    <footer class="mt-16 text-stone-400 dark:text-stone-500">
+    <footer class="mt-16 text-stone-600 dark:text-stone-300">
       <small
         >Content on this website is licensed under <a
-          class="font-semibold text-sky-500 underline-offset-[0.15em] hover:underline hover:decoration-1"
+          class="font-semibold text-sky-700 underline decoration-1 underline-offset-[0.15em] hover:text-sky-800 dark:text-sky-300 dark:hover:text-sky-200"
           href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a
         > unless otherwise stated.</small
       >
