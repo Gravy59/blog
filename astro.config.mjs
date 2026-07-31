@@ -17,12 +17,16 @@ export default defineConfig({
       name: "Newsreader",
       cssVariable: "--font-body",
       weights: ["300 800"],
+      fallbacks: ["serif"],
+      optimizedFallbacks: true,
     },
     {
       provider: fontProviders.google(),
       name: "Chivo Mono",
       cssVariable: "--font-mono",
       weights: ["300 800"],
+      fallbacks: ["monospace"],
+      optimizedFallbacks: true,
     },
   ],
 
