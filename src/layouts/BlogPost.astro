@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { Font } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
 import ArticleStructuredData from "@/components/ArticleStructuredData.astro";
@@ -8,6 +9,9 @@ type Props = CollectionEntry<"blog">["data"];
 
 const { title, summary, pubDate, updatedDate } = Astro.props;
 ---
+
+<!-- to reduce load time -->
+<Font cssVariable="--font-mono" preload />
 
 <Layout {title} description={summary ?? undefined} {pubDate} {updatedDate}>
   <ArticleStructuredData

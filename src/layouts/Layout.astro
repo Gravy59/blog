@@ -41,9 +41,7 @@ const imageURL = new URL(image.src, Astro.url).href;
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
-    <Font cssVariable="--font-body" />
-
-    <Font cssVariable="--font-mono" />
+    <Font cssVariable="--font-body" preload />
 
     <title>{title}</title>
     <meta name="title" content={title} />
